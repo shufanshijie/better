@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shang.better.dao.WaiterMapper">
+  <resultMap id="BaseResultMap" type="shang.better.model.Waiter">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="waiter_name" jdbcType="VARCHAR" property="waiterName" />
+    <result column="waiter_code" jdbcType="VARCHAR" property="waiterCode" />
+  </resultMap>
+  <insert id="insert" parameterType="shang.better.model.Waiter">
+    insert into waiter (id, waiter_name, waiter_code
+      )
+    values (#{id,jdbcType=INTEGER}, #{waiterName,jdbcType=VARCHAR}, #{waiterCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="shang.better.model.Waiter">
+    insert into waiter
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="waiterName != null">
+        waiter_name,
+      </if>
+      <if test="waiterCode != null">
+        waiter_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="waiterName != null">
+        #{waiterName,jdbcType=VARCHAR},
+      </if>
+      <if test="waiterCode != null">
+        #{waiterCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shang.better.dao.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="shang.better.model.UserInfo">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_code" jdbcType="VARCHAR" property="userCode" />
+  </resultMap>
+  <resultMap  id="WaiterResultMap" type="shang.better.model.Waiter">
+  		<id column="waiter_id" jdbcType="INTEGER" property="id" />
+  		<result column="waiter_name" jdbcType="VARCHAR" property="waiterName" />
+  		<result column="waiter_code" jdbcType="VARCHAR" property="waiterCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+  	id,user_name,user_code
+  </sql>
+  <insert id="insert" parameterType="shang.better.model.UserInfo">
+    insert into user_info (id, user_name, user_code
+      )
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="shang.better.model.UserInfo">
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectUserInfoById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" /> from user_info where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAllUsers" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" /> from user_info
+  </select>
+  <select id="selectAll" resultMap="WaiterResultMap">
+  	select u.id,u.user_name,u.user_code,w.id waiter_id ,w.waiter_name,w.waiter_code from 
+  	user_info u left join user_waiter_map uw on u.id = uw.user_id 
+  	left join waiter w on uw.waiter_id = w.id
+  </select>
+</mapper>
