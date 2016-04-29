@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="shang.better.dao.BOmsBatchOrderMapper">
+<mapper namespace="shang.better.dao.BOmsOrderMapper">
 	<resultMap id="BOrderResultMap" type="shang.better.model.BOmsOrder">
 		<result column="id" jdbcType="INTEGER" property="id" />
 		<result column="lot_no" jdbcType="INTEGER" property="lotNo" />
@@ -14,14 +14,9 @@
 		<result column="product_id" jdbcType="INTEGER" property="productId" />
 		<result column="product_name" jdbcType="VARCHAR" property="productName" />
 	</resultMap>
-	<resultMap id="BOmsBatchOrderResultMap" type="shang.better.model.BOmsBatchOrder">
-		<result column="id" jdbcType="INTEGER" property="id" />
-		<result column="batch_name" jdbcType="VARCHAR" property="batchName" />
-		<collection property="orders" ofType="shang.better.model.BOmsOrder" resultMap="BOrderResultMap"></collection>
-	</resultMap>
-	 <select id="selectBOmsBatchOrderById" parameterType="java.lang.Integer" resultMap="BOmsBatchOrderResultMap">
-		select b.id,batch_name ,o.id order_id,o.lot_no,o.order_name ,d.id order_dtl_id,d.lot_no,d.order_id,d.product_id,d.product_name from t_oms_batch_order b ,t_oms_order o ,t_oms_order_dtl d 
-where b.id = o.lot_no  and o.id = d.order_id and b.id = #{id,jdbcType=INTEGER}
+	 <select id="selectBOmsOrderById" parameterType="java.lang.Integer" resultMap="BOrderResultMap">
+		select o.id,o.lot_no,o.order_name ,d.id order_dtl_id,d.lot_no,d.order_id,d.product_id,d.product_name from t_oms_order o ,t_oms_order_dtl d 
+			where o.id = d.order_id and o.id = #{id,jdbcType=INTEGER}
 	 </select>
 	
 </mapper>
