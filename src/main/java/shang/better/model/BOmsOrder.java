@@ -5,33 +5,26 @@ import java.util.List;
 public class BOmsOrder {
 	
 	private int id;
-	private int lotNo;
-	private String orderName;
+	private TOmsOrder order;
 	private List<TOmsOrderDtl> orderDtls;
-	
-	public List<TOmsOrderDtl> getOrderDtls() {
-		return orderDtls;
-	}
-	public void setOrderDtls(List<TOmsOrderDtl> orderDtls) {
-		this.orderDtls = orderDtls;
-	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getLotNo() {
-		return lotNo;
+	public TOmsOrder getOrder() {
+		return order;
 	}
-	public void setLotNo(int lotNo) {
-		this.lotNo = lotNo;
+	public void setOrder(TOmsOrder order) {
+		this.order = order;
 	}
-	public String getOrderName() {
-		return orderName;
+	
+	public List<TOmsOrderDtl> getOrderDtls() {
+		return orderDtls;
 	}
-	public void setOrderName(String orderName) {
-		this.orderName = orderName;
+	public void setOrderDtls(List<TOmsOrderDtl> orderDtls) {
+		this.orderDtls = orderDtls;
 	}
 	
 

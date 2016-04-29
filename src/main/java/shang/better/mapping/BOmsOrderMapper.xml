@@ -3,9 +3,13 @@
 <mapper namespace="shang.better.dao.BOmsOrderMapper">
 	<resultMap id="BOrderResultMap" type="shang.better.model.BOmsOrder">
 		<result column="id" jdbcType="INTEGER" property="id" />
+		<association property="order" javaType="shang.better.model.TOmsOrder" resultMap="OrderResultMap"/>  
+		<collection property="orderDtls" ofType="shang.better.model.TOmsOrderDtl" resultMap="OrderDtlResultMap"></collection>
+	</resultMap>
+	<resultMap id="OrderResultMap" type="shang.better.model.TOmsOrder">
+		<result column="id" jdbcType="INTEGER" property="id" />
 		<result column="lot_no" jdbcType="INTEGER" property="lotNo" />
 		<result column="order_name" jdbcType="VARCHAR" property="orderName" />
-		<collection property="orderDtls" ofType="shang.better.model.TOmsOrderDtl" resultMap="OrderDtlResultMap"></collection>
 	</resultMap>
 	<resultMap id="OrderDtlResultMap" type="shang.better.model.TOmsOrderDtl">
 		<result column="order_dtl_id" jdbcType="INTEGER" property="id" />
