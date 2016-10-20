@@ -53,11 +53,16 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
-		<property name="mapperLocations" value="classpath:shang/better/mapping/*.xml" />
+		<property name="mapperLocations" >
+			<list>
+				<value>classpath*:shang/better/mapping/*.xml</value>
+				<value>classpath*:com/shang/order/mybatis/sqlmap/*.xml</value>
+			</list>
+		</property>
 	</bean>
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="shang.better.dao" />
+		<property name="basePackage" value="shang.better.dao,com.shang.order.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 

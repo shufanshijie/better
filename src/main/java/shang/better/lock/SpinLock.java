@@ -15,7 +15,7 @@ public class SpinLock {
 			System.out.println("count ++ "+count);
 			return;
 		}
-		while(!owner.compareAndSet(null, currentThread)){
+		while(!owner.compareAndSet(null, currentThread)){//循环获取锁
 			
 		}
 	}
