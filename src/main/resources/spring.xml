@@ -10,6 +10,7 @@
 	<context:property-placeholder location="classpath:config.properties" />
 
 	<!--自动扫描含有@Service将其注入为bean -->
-	<context:component-scan base-package="shang.better.service com.shang.order.service" />
+	<context:component-scan base-package="com.shang.order.service" />
+	<import resource="spring-mybatis.xml" />
 
 </beans>

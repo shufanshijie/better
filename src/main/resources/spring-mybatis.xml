@@ -53,16 +53,14 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
-		<property name="mapperLocations" >
-			<list>
-				<value>classpath*:shang/better/mapping/*.xml</value>
-				<value>classpath*:com/shang/order/mybatis/sqlmap/*.xml</value>
-			</list>
-		</property>
+		<!--
+		<property name="configLocation" value="classpath:Configuration.xml"></property>
+		-->
+		<property name="mapperLocations" value="classpath*:mapping/*.xml"></property>
 	</bean>
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="shang.better.dao,com.shang.order.dao" />
+		<property name="basePackage" value="com.shang.order.mapper" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
@@ -91,9 +89,8 @@
 	<!-- Spring aop事务管理 -->
 	<aop:config>
 		<aop:pointcut id="transactionPointcut"
-			expression="execution(* shang.better.service..*Impl.*(..))" />
+			expression="execution(* com.shang.order.service..*Impl.*(..))" />
 		<aop:advisor pointcut-ref="transactionPointcut"
 			advice-ref="transactionAdvice" />
 	</aop:config>
-
 </beans>
