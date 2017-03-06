@@ -2,3 +2,9 @@
 /target/
 /target/
 /target/
+/.idea/*.name
+/.idea/artifacts/*.xml
+/.idea/*.xml
+/.idea/copyright/*.xml
+/.idea/libraries/*.xml
+/*.iml
